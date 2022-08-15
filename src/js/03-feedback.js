@@ -14,10 +14,9 @@ feedbackForm();
 
 function onFormSubmit(event) {
   event.preventDefault();
-  console.log(formData);
+  if (textareaEl.value !== '' && emailEl.value !== '') console.log(formData);
   event.currentTarget.reset();
-  if (textareaEl.value === '' && emailEl.value === '')
-    localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(STORAGE_KEY);
 }
 
 formEl.addEventListener('input', throttle(onFormInput, 500));
@@ -27,7 +26,6 @@ function onFormInput(event) {
     email: emailEl.value,
     message: textareaEl.value,
   };
-  console.log(formData);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 

@@ -4,14 +4,11 @@ import SimpleLightbox from 'simplelightbox';
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-console.log(galleryItems);
-
 const galleryEl = document.querySelector('.gallery');
 
-function createGallery() {
-  let imgCard = galleryItems
-    .map(({ preview, original, description }) => {
-      return `<div class="gallery__item">
+galleryEl.innerHTML = galleryItems
+  .map(({ preview, original, description }) => {
+    return `<div class="gallery__item">
   <a class="gallery__link" href=${original}>
     <img
       class="gallery__image"
@@ -21,13 +18,10 @@ function createGallery() {
     />
   </a>
 </div>`;
-    })
-    .join('');
-  galleryEl.innerHTML = imgCard;
-}
-createGallery();
+  })
+  .join('');
 
-let lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
